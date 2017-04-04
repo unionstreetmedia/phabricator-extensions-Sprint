@@ -57,16 +57,19 @@ final class BoardDataPieView extends Phobject {
 
     foreach ($coldata as $col) {
       switch ($col[0]) {
-        case ('Done'):
+        case ('Master'):
+        case ('Feature Complete'):
+          $done_points = $col[2];
+          break;
           $done_points = $col[2];
           break;
         case ('Backlog'):
           $backlog_points = $col[2];
           break;
-        case ('Doing'):
+        case ('In Progress'):
           $doing_points = $col[2];
           break;
-        case ('Review'):
+        case ('Code Review'):
           $review_points = $col[2];
           break;
         default:

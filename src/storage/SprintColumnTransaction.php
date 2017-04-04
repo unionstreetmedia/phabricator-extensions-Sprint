@@ -91,13 +91,14 @@ final class SprintColumnTransaction {
   }
 
   private function setXActionEventType($old_col_name, $new_col_name) {
-    $old_is_closed = ($old_col_name = SprintConstants::TYPE_CLOSED_STATUS_COLUMN and $new_col_name != SprintConstants::TYPE_CLOSED_STATUS_COLUMN);
+    $old_is_closed = ($old_col_name == SprintConstants::TYPE_CLOSED_STATUS_COLUMN and $new_col_name != SprintConstants::TYPE_CLOSED_STATUS_COLUMN) or ($old_col_name == SprintConstants::TYPE_COMPLETE_STATUS_COLUMN and $new_col_name != SprintConstants::TYPE_COMPLETE_STATUS_COLUMN);
 
     if ($old_is_closed) {
       return 'reopen';
     } else if ($new_col_name) {
       switch ($new_col_name) {
           case SprintConstants::TYPE_CLOSED_STATUS_COLUMN:
+          case SprintConstants::TYPE_COMPLETE_STATUS_COLUMN:
               return 'close';
           case SprintConstants::TYPE_REVIEW_STATUS_COLUMN:
               return 'review';

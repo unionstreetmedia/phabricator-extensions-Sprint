@@ -82,7 +82,7 @@ private $viewer;
     if ($status == 'open') {
       $this->task_open_status_sum =
           $this->setTaskOpenStatusSum($this->task_open_status_sum, $points);
-    } else if ($status == 'resolved') {
+    } else { // if ($status == 'resolved') { // TODO this should be based on Maniphest configured closed statuses
       $this->task_closed_status_sum =
           $this->setTaskClosedStatusSum($this->task_closed_status_sum, $points);
     }
